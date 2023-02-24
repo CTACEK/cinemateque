@@ -15,6 +15,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ctacekscompany.cinemateque.databinding.ActivityMainBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,22 +38,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+
+        setContentView(binding.getRoot());
         context = getApplicationContext();
 
-//        button = findViewById(R.id.button);
-//
-//        button.setOnClickListener(v -> Log.d(TAG, "Client click me!")
-//        );
-
-
+        binding.button.setOnClickListener(v -> Log.d(TAG, "Client click me!"));
 
         Toast.makeText(context, createText, duration).show();
-    }
-
-    public void onMyButtonClick(View view)
-    {
-        Log.d(TAG, "Client click me!");
     }
 
     @Override

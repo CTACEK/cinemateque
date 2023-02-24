@@ -2,10 +2,20 @@ package com.ctacekscompany.cinemateque;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,14 +28,27 @@ public class MainActivity extends AppCompatActivity {
     private final CharSequence pauseText = "Pause toast!";
     private final CharSequence resumeText = "Resume toast!";
 
+    FloatingActionButton button;
+
     private final int duration = Toast.LENGTH_SHORT;
     private static final String TAG = "MyAPP";
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = getApplicationContext();
+
+        button = findViewById(R.id.button);
+
+        TextView textView = findViewById(R.id.textView);
+        textView.setText("Amogus");
+
+        ImageView imageView = findViewById(R.id.imageView);
+        imageView.setImageDrawable(getDrawable(R.drawable.man));
+
+
         Toast.makeText(context, createText, duration).show();
     }
 

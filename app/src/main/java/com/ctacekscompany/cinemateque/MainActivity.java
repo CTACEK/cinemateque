@@ -1,9 +1,15 @@
 package com.ctacekscompany.cinemateque;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.os.Bundle;
@@ -31,10 +37,33 @@ public class MainActivity extends AppCompatActivity {
 
     FloatingActionButton button;
 
+    String clientName;
     private final int duration = Toast.LENGTH_SHORT;
     private static final String TAG = "MyAPP";
 
-    @SuppressLint("UseCompatLoadingForDrawables")
+    static final String ACCESS_MESSAGE="ACCESS_MESSAGE";
+
+    ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @SuppressLint("SetTextI18n")
+                @Override
+                public void onActivityResult(ActivityResult result) {
+
+                    TextView textView = findViewById(R.id.textView);
+                    if(result.getResultCode() == Activity.RESULT_OK){
+                        Intent intent = result.getData();
+                        assert intent != null;
+                        String nameClient = intent.getStringExtra(ACCESS_MESSAGE);
+                        clientName = nameClient;
+                        textView.setText(getString(R.string.hello_client) + nameClient);
+                    }
+                    else{
+                        Toast.makeText(context, "Настройки не были сохранены!", duration).show();
+                    }
+                }
+            });
+
+    @SuppressLint({"UseCompatLoadingForDrawables", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,43 +72,57 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         context = getApplicationContext();
 
-        binding.button.setOnClickListener(v -> Log.d(TAG, "Client click me!"));
+        clientName = "Dear client";
 
-        Toast.makeText(context, createText, duration).show();
+        binding.textView.setText(getString(R.string.hello_client) + clientName);
+
+        binding.button.setOnClickListener(v -> {
+            Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
+            settingsIntent.putExtra("name", clientName);
+            mStartForResult.launch(settingsIntent);
+        });
+
+        binding.imageView1.setImageDrawable(getDrawable(R.drawable.man));
+        binding.imageView2.setImageDrawable(getDrawable(R.drawable.man));
+        binding.imageView3.setImageDrawable(getDrawable(R.drawable.man));
+        binding.imageView4.setImageDrawable(getDrawable(R.drawable.man));
+        binding.imageView5.setImageDrawable(getDrawable(R.drawable.man));
+
+//        Toast.makeText(context, createText, duration).show();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Toast.makeText(context, startText, duration).show();
+//        Toast.makeText(context, startText, duration).show();
         Log.i(TAG, String.valueOf(startText));
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Toast.makeText(context, stopText, duration).show();
+//        Toast.makeText(context, stopText, duration).show();
         Log.d(TAG, String.valueOf(stopText));
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Toast.makeText(context, destroyText, duration).show();
+//        Toast.makeText(context, destroyText, duration).show();
         Log.e(TAG, String.valueOf(destroyText));
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Toast.makeText(context, pauseText, duration).show();
+//        Toast.makeText(context, pauseText, duration).show();
         Log.v(TAG, String.valueOf(pauseText));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Toast.makeText(context, resumeText, duration).show();
+//        Toast.makeText(context, resumeText, duration).show();
         Log.w(TAG, String.valueOf(resumeText));
     }
 

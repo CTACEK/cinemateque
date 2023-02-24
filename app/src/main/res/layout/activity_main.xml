@@ -30,7 +30,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:text="Hello, dear client"
+        android:text="@string/hello_client"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextFindFilm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,9 +46,9 @@
         android:layout_marginBottom="28dp"
         android:autofillHints="Name"
         android:ems="10"
+        android:hint="@string/enter_interesting_film"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="@string/enter_interesting_film"
         app:layout_constraintBottom_toTopOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +73,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imageView1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/todo"

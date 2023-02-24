@@ -5,4 +5,8 @@
     <string name="enter_name">Enter your name</string>
     <string name="todo">TODO</string>
     <string name="enter_interesting_film">Enter interesting film</string>
+    <string name="hello_client">Hello, </string>
+    <string name="back_button">Back</string>
+    <string name="settings_title">Settings</string>
+    <string name="apply_button">Apply</string>
 </resources>

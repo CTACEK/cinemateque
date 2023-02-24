@@ -40,16 +40,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         context = getApplicationContext();
 
-        button = findViewById(R.id.button);
+//        button = findViewById(R.id.button);
+//
+//        button.setOnClickListener(v -> Log.d(TAG, "Client click me!")
+//        );
 
-        TextView textView = findViewById(R.id.textView);
-        textView.setText("Amogus");
-
-        ImageView imageView = findViewById(R.id.imageView);
-        imageView.setImageDrawable(getDrawable(R.drawable.man));
 
 
         Toast.makeText(context, createText, duration).show();
+    }
+
+    public void onMyButtonClick(View view)
+    {
+        Log.d(TAG, "Client click me!");
     }
 
     @Override

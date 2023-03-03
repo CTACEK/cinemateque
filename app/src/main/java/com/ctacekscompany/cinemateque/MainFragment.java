@@ -26,7 +26,7 @@ public class MainFragment extends Fragment {
     private FragmentMainBinding binding;
 
     String clientName;
-    private static final String TAG = "MyAPP";
+    private static final String TAG = "MainFragment";
     public MainFragment() {
         super(R.layout.fragment_main);
     }
@@ -45,10 +45,15 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onViewCreated");
         Toast.makeText(context, "onViewCreated", duration).show();
+
         clientName = "Noname";
 
         binding.textView.setText(getString(R.string.hello_client) + clientName);
 
+        getParentFragmentManager().setFragmentResultListener("requestKey", this, (key, bundle) -> {
+            String result = bundle.getString("bundleKey");
+            binding.textView.setText(getString(R.string.hello_client) + result);
+        });
 
         binding.button.setOnClickListener(v -> getParentFragmentManager().beginTransaction().replace(R.id.fragment_container_view, SettingsFragment.class, null).commit());
 
@@ -72,15 +77,9 @@ public class MainFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = getContext();
         Log.d(TAG, "onCreate");
         Toast.makeText(context, "onCreate", duration).show();
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        Log.d(TAG, "onAttach");
-        Toast.makeText(context, "onAttach", duration).show();
     }
 
     @Override

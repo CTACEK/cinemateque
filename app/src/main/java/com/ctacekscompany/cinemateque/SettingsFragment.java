@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.ctacekscompany.cinemateque.databinding.FragmentSettingsBinding;
 
+import java.util.Objects;
+
 
 public class SettingsFragment extends Fragment {
 
@@ -23,7 +25,7 @@ public class SettingsFragment extends Fragment {
     private Context context;
     private final int duration = Toast.LENGTH_SHORT;
 
-    private static final String TAG = "MyAPP";
+    private static final String TAG = "SettingsFragment";
 
     public SettingsFragment() {
         super(R.layout.fragment_settings);
@@ -44,7 +46,11 @@ public class SettingsFragment extends Fragment {
 
         Toast.makeText(context, "onViewCreated", duration).show();
         binding.backButton.setOnClickListener(v -> {
+            Bundle result = new Bundle();
+            result.putString("bundleKey", String.valueOf(binding.editTextPersonName.getText()));
+            getParentFragmentManager().setFragmentResult("requestKey", result);
 
+            getParentFragmentManager().beginTransaction().replace(R.id.fragment_container_view, MainFragment.class, null).commit();
         });
 
     }
@@ -61,15 +67,9 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = getContext();
         Log.d(TAG, "onCreate");
         Toast.makeText(context, "onCreate", duration).show();
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        Log.d(TAG, "onAttach");
-        Toast.makeText(context, "onAttach", duration).show();
     }
 
     @Override

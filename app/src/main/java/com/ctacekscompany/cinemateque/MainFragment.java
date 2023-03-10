@@ -55,7 +55,12 @@ public class MainFragment extends Fragment {
             binding.textView.setText(getString(R.string.hello_client) + result);
         });
 
-        binding.button.setOnClickListener(v -> getParentFragmentManager().beginTransaction().replace(R.id.fragment_container_view, SettingsFragment.class, null).commit());
+        binding.button.setOnClickListener(v ->
+                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container_view,
+                        SettingsFragment.class, null).commit());
+        binding.button2.setOnClickListener(v ->
+                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container_view,
+                        LoginFragment.class, null).commit());
 
         binding.imageView1.setImageDrawable(getResources().getDrawable(R.drawable.man));
         binding.imageView2.setImageDrawable(getResources().getDrawable(R.drawable.man));

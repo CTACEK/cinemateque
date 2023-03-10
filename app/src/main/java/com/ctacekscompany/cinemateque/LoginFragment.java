@@ -19,13 +19,7 @@ import com.ctacekscompany.cinemateque.databinding.FragmentMainBinding;
 
 public class LoginFragment extends Fragment {
 
-    private Context context;
-    private final int duration = Toast.LENGTH_SHORT;
 
-    private FragmentMainBinding binding;
-
-    String clientName;
-    private static final String TAG = "MainFragment";
     public LoginFragment() {
         super(R.layout.fragment_main);
     }

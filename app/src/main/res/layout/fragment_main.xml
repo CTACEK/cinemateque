@@ -66,16 +66,20 @@
         android:hint="@string/enter_interesting_film"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/filmList"
+        app:layout_constraintBottom_toTopOf="@+id/list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="LabelFor,VisualLintTextFieldSize" />
 
-    <ListView
-        android:id="@+id/filmList"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list"
         android:layout_width="411dp"
         android:layout_height="475dp"
+
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@ package com.ctacekscompany.cinemateque.fragments;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.ctacekscompany.cinemateque.data.FilmAdapter;
 import com.ctacekscompany.cinemateque.data.FilmInfo;
 import com.ctacekscompany.cinemateque.R;
+import com.ctacekscompany.cinemateque.data.FilmRecycleAdapter;
 import com.ctacekscompany.cinemateque.databinding.FragmentMainBinding;
 
 import java.util.ArrayList;
@@ -69,18 +71,17 @@ public class MainFragment extends Fragment {
                 getParentFragmentManager().beginTransaction().replace(R.id.fragment_container_view,
                         LoginFragment.class, null).commit());
 
-        ArrayList<FilmInfo> books = new ArrayList<>();
+        ArrayList<FilmInfo> films = new ArrayList<>();
 
-        books.add(new FilmInfo("Back to the future 1", R.drawable.man));
-        books.add(new FilmInfo("Back to the future 2", R.drawable.man));
-        books.add(new FilmInfo("Back to the future 3", R.drawable.man));
-        books.add(new FilmInfo("Titanic", R.drawable.man));
+        films.add(new FilmInfo("Back to the future 1", R.drawable.man));
+        films.add(new FilmInfo("Back to the future 2", R.drawable.man));
+        films.add(new FilmInfo("Back to the future 3", R.drawable.man));
+        films.add(new FilmInfo("Titanic", R.drawable.man));
 
-        filmsList = view.findViewById(R.id.filmList);
+        RecyclerView recyclerView = view.findViewById(R.id.list);
 
-        FilmAdapter bookAdapter = new FilmAdapter(getContext(), R.layout.item_film, books);
-
-        filmsList.setAdapter(bookAdapter);
+        FilmRecycleAdapter adapter = new FilmRecycleAdapter(getContext(), films);
+        recyclerView.setAdapter(adapter);
     }
 
 

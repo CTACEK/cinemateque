@@ -1,4 +1,4 @@
-package com.ctacekscompany.cinemateque;
+package com.ctacekscompany.cinemateque.fragments;
 
 
 import android.annotation.SuppressLint;
@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.ctacekscompany.cinemateque.R;
 import com.ctacekscompany.cinemateque.databinding.FragmentMainBinding;
 
 

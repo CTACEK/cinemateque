@@ -1,4 +1,4 @@
-package com.ctacekscompany.cinemateque;
+package com.ctacekscompany.cinemateque.fragments;
 
 
 import androidx.annotation.NonNull;
@@ -6,16 +6,21 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.ctacekscompany.cinemateque.data.FilmAdapter;
+import com.ctacekscompany.cinemateque.data.FilmInfo;
+import com.ctacekscompany.cinemateque.R;
 import com.ctacekscompany.cinemateque.databinding.FragmentMainBinding;
+
+import java.util.ArrayList;
 
 
 public class MainFragment extends Fragment {
@@ -24,9 +29,11 @@ public class MainFragment extends Fragment {
     private final int duration = Toast.LENGTH_SHORT;
 
     private FragmentMainBinding binding;
+    ListView filmsList;
 
     String clientName;
     private static final String TAG = "MainFragment";
+
     public MainFragment() {
         super(R.layout.fragment_main);
     }
@@ -62,13 +69,20 @@ public class MainFragment extends Fragment {
                 getParentFragmentManager().beginTransaction().replace(R.id.fragment_container_view,
                         LoginFragment.class, null).commit());
 
-        binding.imageView1.setImageDrawable(getResources().getDrawable(R.drawable.man));
-        binding.imageView2.setImageDrawable(getResources().getDrawable(R.drawable.man));
-        binding.imageView3.setImageDrawable(getResources().getDrawable(R.drawable.man));
-        binding.imageView4.setImageDrawable(getResources().getDrawable(R.drawable.man));
-        binding.imageView5.setImageDrawable(getResources().getDrawable(R.drawable.man));
+        ArrayList<FilmInfo> books = new ArrayList<>();
 
+        books.add(new FilmInfo("Back to the future 1", R.drawable.man));
+        books.add(new FilmInfo("Back to the future 2", R.drawable.man));
+        books.add(new FilmInfo("Back to the future 3", R.drawable.man));
+        books.add(new FilmInfo("Titanic", R.drawable.man));
+
+        filmsList = view.findViewById(R.id.filmList);
+
+        FilmAdapter bookAdapter = new FilmAdapter(getContext(), R.layout.item_film, books);
+
+        filmsList.setAdapter(bookAdapter);
     }
+
 
     @Override
     public void onDestroyView() {

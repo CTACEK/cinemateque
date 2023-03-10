@@ -1,15 +1,10 @@
 package com.ctacekscompany.cinemateque;
 
-import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 
-import com.ctacekscompany.cinemateque.databinding.FragmentMainBinding;
+import com.ctacekscompany.cinemateque.fragments.MainFragment;
 
 public class MainActivity extends AppCompatActivity {
     @Override

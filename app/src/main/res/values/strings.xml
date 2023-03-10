@@ -15,4 +15,5 @@
     <string name="login">Login</string>
     <string name="enter_you_email">Enter you email</string>
     <string name="enter_you_password">Enter you password</string>
+    <string name="name">Название</string>
 </resources>

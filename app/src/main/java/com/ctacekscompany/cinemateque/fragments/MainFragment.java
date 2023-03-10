@@ -31,9 +31,11 @@ public class MainFragment extends Fragment {
     private final int duration = Toast.LENGTH_SHORT;
 
     private FragmentMainBinding binding;
-    ListView filmsList;
+    private ListView filmsList;
 
-    String clientName;
+    private String clientName;
+
+    private ArrayList<FilmInfo> films;
     private static final String TAG = "MainFragment";
 
     public MainFragment() {
@@ -71,17 +73,21 @@ public class MainFragment extends Fragment {
                 getParentFragmentManager().beginTransaction().replace(R.id.fragment_container_view,
                         LoginFragment.class, null).commit());
 
-        ArrayList<FilmInfo> films = new ArrayList<>();
+        films = new ArrayList<>();
 
-        films.add(new FilmInfo("Back to the future 1", R.drawable.man));
-        films.add(new FilmInfo("Back to the future 2", R.drawable.man));
-        films.add(new FilmInfo("Back to the future 3", R.drawable.man));
-        films.add(new FilmInfo("Titanic", R.drawable.man));
 
         RecyclerView recyclerView = view.findViewById(R.id.list);
 
-        FilmRecycleAdapter adapter = new FilmRecycleAdapter(getContext(), films);
+        FilmRecycleAdapter adapter = new FilmRecycleAdapter(getContext(), createRandomList(200));
         recyclerView.setAdapter(adapter);
+    }
+
+    private ArrayList<FilmInfo> createRandomList(int count) {
+        ArrayList<FilmInfo> randomFilms = new ArrayList<>();
+        for (int i = 1; i <= count; i++) {
+            randomFilms.add(new FilmInfo("Avatar " + i, R.drawable.man));
+        }
+        return randomFilms;
     }
 
 

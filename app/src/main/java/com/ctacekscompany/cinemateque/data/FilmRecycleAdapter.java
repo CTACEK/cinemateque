@@ -49,6 +49,7 @@ public class FilmRecycleAdapter extends RecyclerView.Adapter<FilmRecycleAdapter.
         FilmInfo book = films.get(position);
         holder.posterView.setImageResource(book.getPictureResource());
         holder.nameView.setText(book.getName());
+        holder.itemView.setOnClickListener(v -> onClickListener.onFilmClick(book, position));
     }
 
     @Override

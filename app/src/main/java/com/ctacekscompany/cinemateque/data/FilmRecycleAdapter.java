@@ -17,21 +17,16 @@ import java.util.List;
 
 public class FilmRecycleAdapter extends RecyclerView.Adapter<FilmRecycleAdapter.ViewHolder> {
 
-    interface OnFilmClickListener {
+    public interface OnFilmClickListener {
         void onFilmClick(FilmInfo film, int position);
     }
 
-    private OnFilmClickListener onClickListener;
+    private final OnFilmClickListener onClickListener;
     private final LayoutInflater inflater;
     private final List<FilmInfo> films;
 
     public FilmRecycleAdapter(Context context, List<FilmInfo> films, OnFilmClickListener onClickListener) {
         this.onClickListener = onClickListener;
-        this.films = films;
-        this.inflater = LayoutInflater.from(context);
-    }
-
-    public FilmRecycleAdapter(Context context, List<FilmInfo> films) {
         this.films = films;
         this.inflater = LayoutInflater.from(context);
     }

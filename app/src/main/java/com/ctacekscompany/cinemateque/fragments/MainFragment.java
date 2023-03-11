@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
+import com.ctacekscompany.cinemateque.data.FilmRecycleAdapter;
 
 import com.ctacekscompany.cinemateque.data.FilmAdapter;
 import com.ctacekscompany.cinemateque.data.FilmInfo;
@@ -73,12 +74,17 @@ public class MainFragment extends Fragment {
                 getParentFragmentManager().beginTransaction().replace(R.id.fragment_container_view,
                         LoginFragment.class, null).commit());
 
-        films = new ArrayList<>();
-
 
         RecyclerView recyclerView = view.findViewById(R.id.list);
 
-        FilmRecycleAdapter adapter = new FilmRecycleAdapter(getContext(), createRandomList(200));
+        FilmRecycleAdapter.OnFilmClickListener filmClickListener = (state, position) -> {
+
+            Toast.makeText(getContext(), "Был выбран фильм " + state.getName(),
+                    Toast.LENGTH_SHORT).show();
+            Log.i("TAG", "Был выбран фильм: " + state.getName());
+        };
+
+        FilmRecycleAdapter adapter = new FilmRecycleAdapter(getContext(), createRandomList(200), filmClickListener);
         recyclerView.setAdapter(adapter);
     }
 
